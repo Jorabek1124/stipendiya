@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nomdor stipendiyalar, tanlovlar va fan olimpiadalari — Ma'ruza</title>
+<meta name="description" content="Kredit haftaligi 3-kun: oliy ta'limda o'tkaziladigan nomdor stipendiyalar, tanlovlar va fan olimpiadalari bo'yicha 2 akademik soatlik interaktiv ma'ruza mashg'uloti.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ====== UrDU logotipi: SVG belgisi, sahifa bo'ylab qayta ishlatiladi ====== -->
+<svg width="0" height="0" class="svg-defs" aria-hidden="true">
+  <symbol id="urdu-mark" viewBox="0 0 64 60">
+    <rect x="4"  y="6"  width="12" height="30" rx="2.5" fill="currentColor"/>
+    <rect x="19" y="0"  width="12" height="36" rx="2.5" fill="currentColor" opacity=".82"/>
+    <rect x="34" y="12" width="12" height="24" rx="2.5" fill="currentColor" opacity=".64"/>
+    <path d="M2 41c9-5 18-5 30 2 12-7 21-7 30-2v10c-9-5-18-5-30 2-12-7-21-7-30-2V41z"
+          fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/>
+    <path d="M32 43v10" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<!-- ====== Yuqori panel ====== -->
+<header class="topbar">
+  <div class="brand">
+    <svg class="brand__mark" viewBox="0 0 64 60" aria-hidden="true"><use href="#urdu-mark"></use></svg>
+    <div class="brand__text">
+      <strong>Abu Rayhon Beruniy nomidagi</strong>
+      <span>Urganch davlat universiteti</span>
+    </div>
+  </div>
+
+  <div class="topbar__meta">
+    <span class="chip chip--accent">Kredit haftaligi &middot; 3-kun</span>
+    <span class="chip">Axborot xavfsizligi</span>
+  </div>
+
+  <div class="topbar__tools">
+    <button class="tool" id="timerBtn" title="Mashg'ulot vaqtini boshlash / to'xtatish">
+      <span class="tool__ico">&#9201;</span><span class="tool__val" id="timerVal">80:00</span>
+    </button>
+    <button class="tool" id="themeBtn" title="Yorug' / qorong'i rejim" aria-label="Rejimni almashtirish">
+      <span class="tool__ico" id="themeIco">&#9681;</span>
+    </button>
+    <button class="tool tool--wide" id="outlineBtn" title="Mashg'ulot rejasi (O)">
+      <span class="tool__ico">&#9776;</span><span class="tool__lbl">Reja</span>
+    </button>
+  </div>
+</header>
+
+<!-- ====== Reja paneli ====== -->
+<aside class="outline" id="outline" hidden>
+  <div class="outline__head">
+    <h2>Mashg'ulot rejasi</h2>
+    <button class="outline__close" id="outlineClose" aria-label="Panelni yopish">&#10005;</button>
+  </div>
+  <nav class="outline__list" id="outlineList"></nav>
+  <p class="outline__hint">Boshqarish: <kbd>&larr;</kbd> <kbd>&rarr;</kbd> slayd, <kbd>O</kbd> reja, <kbd>F</kbd> to'liq ekran</p>
+</aside>
+<div class="scrim" id="scrim" hidden></div>
+
+<!-- ====== Slaydlar ====== -->
+<main class="deck" id="deck">
+
+  <!-- 1 -->
+  <section class="slide slide--title" data-title="Mavzuga kirish">
+    <div class="hero">
+      <svg class="hero__logo" viewBox="0 0 64 60" aria-hidden="true"><use href="#urdu-mark"></use></svg>
+      <p class="hero__kicker">Ma'ruza mashg'uloti &middot; 2 akademik soat</p>
+      <h1 class="hero__title">Oliy ta'limda o'tkaziladigan <em>nomdor stipendiyalar</em>, tanlovlar va fan olimpiadalarida ishtirok eting</h1>
+      <p class="hero__lead">
+        Talabaning ilmiy va kasbiy portfoliosini shakllantiruvchi uch yo'nalish:
+        davlat nomdor stipendiyalari, mahalliy va xorijiy tanlovlar, respublika va xalqaro fan olimpiadalari.
+      </p>
+      <dl class="hero__facts">
+        <div><dt>O'tkazilish joyi</dt><dd>O'quv zallari va auditoriyalar</dd></div>
+        <div><dt>Vaqti</dt><dd>09:00 — 11:50</dd></div>
+        <div><dt>Planshet</dt><dd>Stipendiya, tanlov, olimpiada</dd></div>
+        <div><dt>Manba</dt><dd>Metodik qo'llanma, 38–40-betlar</dd></div>
+      </dl>
+    </div>
+    <div class="hero__grid" aria-hidden="true"></div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" data-title="Maqsad va natijalar">
+    <h2 class="s-title">Mashg'ulot maqsadi va kutilayotgan natijalar</h2>
+    <p class="s-lead">Ikki akademik soat yakunida talaba quyidagi natijalarga erishadi.</p>
+    <div class="cols cols--2">
+      <div class="panel">
+        <h3 class="panel__h"><span class="num">01</span> Maqsad</h3>
+        <ul class="list">
+          <li>Nomdor davlat stipendiyalari tizimi va da'vogarlik tartibini tushuntirish.</li>
+          <li>Tanlovlar va fan olimpiadalarining ta'limdagi o'rnini asoslash.</li>
+          <li>Har bir talabada shaxsiy ishtirok rejasini shakllantirish.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 class="panel__h"><span class="num">02</span> Kutilayotgan natijalar</h3>
+        <ul class="list list--check">
+          <li>O'n bir turdagi nomdor stipendiyani va ularning qamrovini ajratadi.</li>
+          <li>Da'vogarlik mezonlarini o'z o'zlashtirish ko'rsatkichi bilan taqqoslaydi.</li>
+          <li>Olimpiada bosqichlari ketma-ketligini izohlaydi.</li>
+          <li>Axborot xavfsizligi yo'nalishidagi tanlov formatlarini tanlaydi.</li>
+        </ul>
+      </div>
+    </div>
+    <h3 class="sub">Mashg'ulot bosqichlari</h3>
+    <ol class="timeline" id="timeline"></ol>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" data-title="Kirish savollari">
+    <h2 class="s-title">Planshet asosidagi kirish savollari</h2>
+    <p class="s-lead">Kartani bosing — kutilayotgan javob va muhokama yo'nalishi ochiladi.</p>
+    <div class="qcards">
+      <article class="qcard" tabindex="0">
+        <h3>Nomdor stipendiyalarni bilasizmi?</h3>
+        <p class="qcard__a">Oliy ta'lim tashkilotlari talabalari uchun Prezident davlat stipendiyasi va buyuk allomalar nomi bilan ataladigan o'n bir turdagi davlat stipendiyasi tayinlanadi.</p>
+      </article>
+      <article class="qcard" tabindex="0">
+        <h3>Stipendiyaga kim da'vogar bo'la oladi?</h3>
+        <p class="qcard__a">Quyi bosqichdan boshlab fanlarni a'lo baholarga o'zlashtirgan, ilmiy va ma'naviy-ma'rifiy sohada ijodiy faol talaba saralash bosqichi orqali tanlab olinadi.</p>
+      </article>
+      <article class="qcard" tabindex="0">
+        <h3>Tanlovlar sizga nima beradi?</h3>
+        <p class="qcard__a">Bilimni mustahkamlash, ko'nikmalarni sinovdan o'tkazish, yangi tajriba orttirish hamda rahbarlik, jamoada ishlash va ijodkorlik salohiyatini rivojlantirish.</p>
+      </article>
+      <article class="qcard" tabindex="0">
+        <h3>Fan olimpiadasi qanday tashkil etiladi?</h3>
+        <p class="qcard__a">Dastlab oliy ta'lim tashkiloti darajasida saralash, so'ngra respublika bosqichi o'tkaziladi; matematika fanidan har ikki yilda xalqaro bosqich tashkil etiladi.</p>
+      </article>
+      <article class="qcard" tabindex="0">
+        <h3>Axborot xavfsizligi bo'yicha olimpiada bormi?</h3>
+        <p class="qcard__a">Ha. Mahalliy darajada axborot texnologiyalari va kiberxavfsizlik fan olimpiadalari o'tkaziladi.</p>
+      </article>
+      <article class="qcard" tabindex="0">
+        <h3>Ishtirok qachon boshlanadi?</h3>
+        <p class="qcard__a">Bitiruv kursini kutmasdan, birinchi bosqichdan: reyting, ilmiy ish va tanlov natijalari yillar bo'yicha to'planadi.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" data-title="Stipendiyalar tizimi">
+    <h2 class="s-title">Nomdor stipendiyalar tizimi</h2>
+    <p class="s-lead">Stipendiyalar qamroviga ko'ra ikki guruhga ajratiladi.</p>
+    <div class="cols cols--2">
+      <div class="panel panel--hi">
+        <span class="badge">Bitiruvchi kurs</span>
+        <h3 class="panel__h">O'zbekiston Respublikasi Prezidentining davlat stipendiyasi</h3>
+        <p>Oliy ta'lim tashkilotlarining <strong>bitiruvchi kurs</strong> talabalariga tayinlanadi va to'lanadi. Tizimdagi eng yuqori maqomli stipendiya hisoblanadi.</p>
+      </div>
+      <div class="panel">
+        <span class="badge badge--soft">Oxirgi ikki kurs</span>
+        <h3 class="panel__h">Alloma nomidagi davlat stipendiyalari</h3>
+        <p>Beruniy, Ibn Sino, Navoiy, Ulug'bek, Imom al-Buxoriy va Islom Karimov nomli davlat stipendiyalari davlat, nodavlat va xorijiy oliy ta'lim tashkilotlari, shu jumladan <strong>qo'shma ta'lim dasturlarining oxirgi ikki kursida</strong> o'qiyotgan talabalarga tayinlanadi va to'lanadi.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="callout__ico">&#9670;</span>
+      <p><strong>Muhim:</strong> da'vogarlik hujjati bir kunda shakllanmaydi. O'zlashtirish, ilmiy faollik va ma'naviy-ma'rifiy ishtirok <em>quyi bosqichdan</em> boshlab to'planadi.</p>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" data-title="Stipendiyalar ro'yxati">
+    <h2 class="s-title">Talabalar uchun nomdor stipendiyalar</h2>
+    <div class="toolbar">
+      <input type="search" id="schSearch" class="input" placeholder="Nomi yoki soha bo'yicha izlash…" aria-label="Stipendiya izlash">
+      <div class="segmented" id="schFilter">
+        <button class="seg is-on" data-f="all">Barchasi</button>
+        <button class="seg" data-f="final">Bitiruvchi kurs</button>
+        <button class="seg" data-f="two">Oxirgi ikki kurs</button>
+        <button class="seg" data-f="other">Alohida nizom</button>
+      </div>
+      <span class="counter" id="schCount"></span>
+    </div>
+    <div class="cards" id="schList"></div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" data-title="Da'vogarlik yo'li">
+    <h2 class="s-title">Stipendiyaga da'vogarlik yo'li</h2>
+    <p class="s-lead">Saralash bosqichiga qadar bajariladigan ketma-ket qadamlar.</p>
+    <ol class="steps">
+      <li><h3>A'lo o'zlashtirish</h3><p>Quyi bosqichdan boshlab fanlarni a'lo baholarga o'zlashtirish va reyting barqarorligini saqlash.</p></li>
+      <li><h3>Ilmiy faollik</h3><p>Ilmiy to'garak, maqola va tezis, loyiha hamda konferensiya ishtiroki.</p></li>
+      <li><h3>Ma'naviy-ma'rifiy ishtirok</h3><p>Ijodiy va ma'naviy-ma'rifiy tadbirlarda faol qatnashish.</p></li>
+      <li><h3>Portfolio</h3><p>Diplom, sertifikat, nashr va tavsiyanomalarni tizimli to'plash.</p></li>
+      <li><h3>Saralash bosqichi</h3><p>Fakultet va universitet bosqichida tanlab olinish.</p></li>
+    </ol>
+    <h3 class="sub">O'z-o'zini tekshirish</h3>
+    <div class="check" id="checkList"></div>
+    <div class="meter"><div class="meter__bar" id="checkBar"></div></div>
+    <p class="meter__txt" id="checkTxt">Belgilangan: 0 / 6</p>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" data-title="Tanlovlar">
+    <h2 class="s-title">Tanlovlarda faol ishtirok eting</h2>
+    <p class="s-lead">Mahalliy va xorijiy darajadagi tanlovlar shaxsiy va kasbiy rivojlanishning muhim imkoniyati.</p>
+    <div class="cols cols--2">
+      <div class="panel">
+        <h3 class="panel__h">Tanlov nimani rivojlantiradi</h3>
+        <ul class="list list--check">
+          <li>Bilimni mustahkamlash</li>
+          <li>Ko'nikmalarni sinovdan o'tkazish</li>
+          <li>Yangi tajriba orttirish</li>
+          <li>Rahbarlik salohiyati</li>
+          <li>Jamoada ishlash</li>
+          <li>Ijodkorlik</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 class="panel__h">Tanlov turlari</h3>
+        <div class="tags">
+          <span class="tag">Ilmiy loyiha tanlovlari</span>
+          <span class="tag">Startap va innovatsiya</span>
+          <span class="tag">Hakaton</span>
+          <span class="tag">Grant va stipendiya dasturlari</span>
+          <span class="tag">Kasbiy mahorat tanlovlari</span>
+          <span class="tag">Xalqaro almashinuv</span>
+        </div>
+        <p class="note">Tanlov e'lonlari universitet, fakultet va yo'nalish bo'yicha rasmiy kanallarda muntazam joylanadi — ularni kuzatib borish ishtirokning birinchi sharti.</p>
+      </div>
+    </div>
+    <div class="callout callout--quote">
+      <p>Tanlovlar sizning iqtidor kalitingizdir: ular nafaqat bilimni sinaydi, balki tajriba, aloqa va ishonch beradi.</p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" data-title="Fan olimpiadalari">
+    <h2 class="s-title">Fan olimpiadalarining ahamiyati</h2>
+    <p class="s-lead">Talabalar bilimini chuqurlashtirish, ilmiy salohiyatni oshirish va iqtidorli yoshlarni aniqlash maqsadida har yili muntazam tashkil etiladi.</p>
+    <div class="cols cols--2">
+      <div class="panel">
+        <h3 class="panel__h">Maqsadi</h3>
+        <ul class="list">
+          <li>Iqtidorli talabalarni aniqlash va rag'batlantirish</li>
+          <li>Fanga qiziqishni oshirish, ilmiy izlanishlarga yo'naltirish</li>
+          <li>Sog'lom raqobat muhitini shakllantirish</li>
+          <li>Ilmiy-nazariy bilimlarni amaliy jihatdan mustahkamlash</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 class="panel__h">Tashkil etish bosqichlari</h3>
+        <div class="stages">
+          <div class="stage"><span class="stage__n">1</span><div><strong>OTT darajasi</strong><p>Oliy ta'lim tashkilotidagi dastlabki saralash bosqichi.</p></div></div>
+          <div class="stage"><span class="stage__n">2</span><div><strong>Respublika bosqichi</strong><p>Eng iqtidorli talabalar respublika darajasida bellashadi.</p></div></div>
+          <div class="stage"><span class="stage__n">3</span><div><strong>Xalqaro bosqich</strong><p>Har ikki yilda bir marta al-Xorazmiy nomidagi matematika fan olimpiadasi.</p></div></div>
+        </div>
+      </div>
+    </div>
+    <h3 class="sub">Mahalliy darajada o'tkaziladigan olimpiadalar</h3>
+    <div class="tags tags--lg">
+      <span class="tag">Fizika</span>
+      <span class="tag">Kimyo</span>
+      <span class="tag">Biologiya</span>
+      <span class="tag tag--hi">Axborot texnologiyalari</span>
+      <span class="tag tag--hi">Kiberxavfsizlik</span>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" data-title="Axborot xavfsizligi yo'nalishi">
+    <h2 class="s-title">Axborot xavfsizligi talabasi uchun yo'nalish</h2>
+    <p class="s-lead">Kiberxavfsizlik olimpiadalari va tanlovlari qanday formatda o'tadi va ularga qanday tayyorlaniladi.</p>
+    <div class="cols cols--3">
+      <div class="panel">
+        <h3 class="panel__h">Formatlar</h3>
+        <ul class="list">
+          <li><strong>Jeopardy CTF</strong> — topshiriqlar toifalari bo'yicha ball to'plash.</li>
+          <li><strong>Attack &amp; Defense</strong> — o'z xizmatini himoya qilib, raqib xizmatidagi zaifliklarni topish.</li>
+          <li><strong>Nazariy bosqich</strong> — kriptografiya, tarmoq va standartlar bo'yicha test.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 class="panel__h">Topshiriq toifalari</h3>
+        <div class="tags">
+          <span class="tag">Kriptografiya</span>
+          <span class="tag">Veb xavfsizligi</span>
+          <span class="tag">Teskari injiniring</span>
+          <span class="tag">Tarmoq tahlili</span>
+          <span class="tag">Forenzika</span>
+          <span class="tag">OSINT</span>
+        </div>
+      </div>
+      <div class="panel">
+        <h3 class="panel__h">Tayyorgarlik bazasi</h3>
+        <ul class="list">
+          <li>Mashq platformalarida muntazam amaliyot</li>
+          <li>Linux, tarmoq protokollari va skript tillari</li>
+          <li>Kasbiy sertifikatlarga yo'naltirilgan o'qish</li>
+          <li>Jamoa bo'lib mashq qilish va yechimlarni tahlil qilish</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="callout__ico">&#9670;</span>
+      <p>Olimpiada topshiriqlari faqat nazariyani emas, <strong>himoya vositalarini to'g'ri qo'llash</strong> ko'nikmasini ham tekshiradi — shu bilan ular kasbiy tayyorgarlikning bir qismi hisoblanadi.</p>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" data-title="Tayyorgarlik rejasi">
+    <h2 class="s-title">Sakkiz haftalik tayyorgarlik rejasi</h2>
+    <p class="s-lead">Qo'shimcha material: saralash bosqichiga tizimli kirish uchun namunaviy reja.</p>
+    <div class="weeks" id="weeks"></div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" data-title="Bilimni tekshirish">
+    <h2 class="s-title">Interaktiv bilim sinovi</h2>
+    <p class="s-lead">Yetti savol. Javobni tanlang — natija darhol ko'rsatiladi.</p>
+    <div class="quiz" id="quiz"></div>
+    <div class="quiz__foot">
+      <button class="btn btn--primary" id="quizReset">Qaytadan boshlash</button>
+      <div class="score"><span id="scoreVal">0</span> / 7 &middot; <span id="scoreTxt">Boshlang</span></div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide" data-title="Amaliy topshiriq">
+    <h2 class="s-title">Amaliy topshiriq va mustaqil ish</h2>
+    <div class="cols cols--2">
+      <div class="panel panel--hi">
+        <span class="badge">Auditoriyada &middot; guruhda</span>
+        <h3 class="panel__h">Shaxsiy ishtirok xaritasi</h3>
+        <ol class="list list--ord">
+          <li>O'z bosqichingizga mos bitta stipendiya turini tanlang va qamrov shartini asoslang.</li>
+          <li>Joriy o'zlashtirish, ilmiy ish va tadbir ishtirokini portfolio jadvaliga yozing.</li>
+          <li>Yetishmayotgan uch mezonni aniqlab, ularni yopish muddatini belgilang.</li>
+          <li>Guruh oldida qisqa taqdim eting.</li>
+        </ol>
+      </div>
+      <div class="panel">
+        <span class="badge badge--soft">Uyga &middot; yozma</span>
+        <h3 class="panel__h">Mustaqil ish topshirig'i</h3>
+        <ol class="list list--ord">
+          <li>Yo'nalishingizga mos bitta tanlov va bitta olimpiadani toping.</li>
+          <li>Ularning talablari, muddatlari va bosqichlarini jadvalga joylashtiring.</li>
+          <li>Sakkiz haftalik shaxsiy tayyorgarlik rejasini tuzing.</li>
+          <li>Natijani bir sahifalik hujjat ko'rinishida topshiring.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="callout__ico">&#9670;</span>
+      <p><strong>Topshirish shakli:</strong> jadval va reja bitta faylda, muddat va o'lchanadigan ko'rsatkichlar aniq ko'rsatilgan holda.</p>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide" data-title="Baholash mezonlari">
+    <h2 class="s-title">Baholash mezonlari va fidbek</h2>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th>Mezon</th><th>Yuqori daraja</th><th>O'rta daraja</th><th>Ball</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Stipendiya qamrovini bilish</td>
+            <td>Guruhlar va kurs shartini xatosiz ajratadi</td>
+            <td>Ro'yxatni biladi, shartlarni chalkashtiradi</td>
+            <td>25</td>
+          </tr>
+          <tr>
+            <td>Da'vogarlik mezonlari tahlili</td>
+            <td>O'z ko'rsatkichini mezon bilan asosli taqqoslaydi</td>
+            <td>Umumiy gaplar bilan cheklanadi</td>
+            <td>25</td>
+          </tr>
+          <tr>
+            <td>Olimpiada bosqichlari</td>
+            <td>Ketma-ketlik va davriylikni to'g'ri izohlaydi</td>
+            <td>Bosqichlarni qisman sanaydi</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>Shaxsiy reja sifati</td>
+            <td>Muddat va o'lchanadigan natija belgilangan</td>
+            <td>Reja mavjud, muddat aniq emas</td>
+            <td>30</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cols cols--2">
+      <div class="panel">
+        <h3 class="panel__h">Kuchli tomonlar sifatida qayd etiladi</h3>
+        <ul class="list list--check">
+          <li>Imkoniyatlarni mustaqil izlash</li>
+          <li>Hujjat va natijalarni tizimli saqlash</li>
+          <li>Jamoada ishlash tajribasi</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 class="panel__h">Takomillashtirish lozim jihatlar</h3>
+        <ul class="list list--warn">
+          <li>Ishtirokni bitiruv kursiga qoldirish</li>
+          <li>Faqat bitta yo'nalish bilan cheklanish</li>
+          <li>Muddatlarni kuzatmaslik</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide" data-title="Xulosa">
+    <h2 class="s-title">Xulosa</h2>
+    <div class="finals">
+      <div class="final"><span class="final__n">11</span><p>turdagi nomdor davlat stipendiyasi talabalar uchun tayinlanadi</p></div>
+      <div class="final"><span class="final__n">3</span><p>olimpiada bosqichi: OTT darajasi, respublika, xalqaro</p></div>
+      <div class="final"><span class="final__n">2</span><p>yilda bir marta al-Xorazmiy nomidagi xalqaro matematika olimpiadasi</p></div>
+    </div>
+    <div class="cols cols--2">
+      <div class="panel panel--hi">
+        <h3 class="panel__h">Asosiy xulosa</h3>
+        <ul class="list list--check">
+          <li>Stipendiya — bir martalik hujjat emas, yillar davomidagi natijalar yakuni.</li>
+          <li>Tanlov ishtiroki bilimni tajribaga aylantiradi.</li>
+          <li>Olimpiada iqtidorni aniqlashning rasmiy va ochiq yo'li.</li>
+          <li>Axborot xavfsizligi yo'nalishida amaliy ko'nikma alohida qadrlanadi.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 class="panel__h">Manba va foydalanilgan material</h3>
+        <ul class="list">
+          <li>Metodik qo'llanma, kredit haftaligi 3-kun, <strong>38–40-betlar</strong>.</li>
+          <li>Nomdor stipendiyalar ro'yxati va qamrov shartlari — shu manba asosida.</li>
+          <li>Olimpiada maqsadi, bosqichlari va fan yo'nalishlari — shu manba asosida.</li>
+          <li>Tayyorgarlik rejasi, CTF formatlari va baholash rubrikasi — mashg'ulot uchun qo'shimcha material.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="closing">Abu Rayhon Beruniy nomidagi Urganch davlat universiteti &middot; Axborot xavfsizligi yo'nalishi</p>
+  </section>
+
+</main>
+
+<!-- ====== Pastki boshqaruv ====== -->
+<footer class="dock">
+  <button class="btn" id="prevBtn">&larr; Oldingi</button>
+  <div class="dock__mid">
+    <div class="progress"><div class="progress__bar" id="progBar"></div></div>
+    <span class="dock__label" id="dockLabel"></span>
+  </div>
+  <button class="btn btn--primary" id="nextBtn">Keyingi &rarr;</button>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
