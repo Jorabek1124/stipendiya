@@ -223,8 +223,8 @@ kbd{
 .hero__lead{font-size:clamp(14.5px,1.4vw,18px);color:var(--ink-2);max-width:74ch;margin:0 auto}
 
 .hero__facts{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:12px;margin:38px 0 0;text-align:left;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,250px));
+  justify-content:center;gap:12px;margin:38px 0 0;text-align:left;
 }
 .hero__facts div{
   padding:14px 16px;background:var(--surface);border:1px solid var(--line);
