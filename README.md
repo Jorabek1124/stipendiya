@@ -23,7 +23,7 @@ Kredit haftaligi 3-kun · 2 akademik soat (80 daqiqa)
 Yuqori panelda: mashg'ulot taymeri (80 daqiqa, bosilganda boshlanadi va to'xtaydi),
 yorug'/qorong'i rejim, reja paneli.
 
-## Tuzilishi (15 slayd)
+## Tuzilishi (14 slayd)
 
 1. Mavzuga kirish
 2. Maqsad, kutilayotgan natijalar va mashg'ulot bosqichlari
@@ -34,12 +34,11 @@ yorug'/qorong'i rejim, reja paneli.
 7. Tanlovlar
 8. Fan olimpiadalari: maqsad va bosqichlar
 9. Axborot xavfsizligi yo'nalishi: formatlar va tayyorgarlik
-10. **CTF mini-poligoni** — 5 topshiriq, javob tekshiruvi
-11. Sakkiz haftalik tayyorgarlik rejasi
-12. Interaktiv bilim sinovi (7 savol, ball hisobi)
-13. Amaliy topshiriq va mustaqil ish
-14. Baholash mezonlari va fidbek
-15. Xulosa va manbalar
+10. Sakkiz haftalik tayyorgarlik rejasi
+11. Interaktiv bilim sinovi (7 savol, ball hisobi)
+12. Amaliy topshiriq va mustaqil ish
+13. Baholash mezonlari va fidbek
+14. Xulosa va manbalar
 
 ### Tayyorlik kalkulyatori (6-slayd)
 
@@ -52,23 +51,15 @@ ma'naviy-ma'rifiy faollik 15. Faqat yuqori baho 40% beradi — bu qo'llanmadagi
 talabni aks ettiradi: o'zlashtirish yolg'iz yetarli emas. Natija shartli
 o'z-o'zini baholash, rasmiy saralash OTT nizomi asosida o'tkaziladi.
 
-### CTF mini-poligoni (10-slayd)
-
-Olimpiada formatini amalda ko'rsatadigan beshta topshiriq: Sezar shifri,
-base64 qatlami, xesh algoritmini aniqlash, server jurnalidan SQL in'yeksiyasi
-urinishini topish, Set-Cookie sarlavhasidagi yetishmayotgan himoya belgisi.
-Har biri 20 ball; ishorat ochilsa 12 ball. Javob `Enter` bilan ham tekshiriladi,
-har bir yechimdan keyin izoh chiqadi.
-
 ## Mazmun manbasi
 
 Asosiy mazmun — metodik qo'llanmaning **38–40-betlari** (kredit haftaligi 3-kun):
 nomdor stipendiyalar ro'yxati va qamrov shartlari, da'vogarlik tartibi, tanlovlar,
 fan olimpiadalarining maqsadi, bosqichlari va fan yo'nalishlari.
 
-Mashg'ulot uchun qo'shilgan qism: vaqt taqsimoti, o'z-o'zini tekshirish mezonlari,
-sakkiz haftalik tayyorgarlik rejasi, CTF formatlari, bilim sinovi savollari,
-amaliy topshiriq va baholash rubrikasi.
+Mashg'ulot uchun qo'shilgan qism: mashg'ulot bosqichlari, tayyorlik kalkulyatori,
+sakkiz haftalik tayyorgarlik rejasi, bilim sinovi savollari, amaliy topshiriq va
+baholash rubrikasi.
 
 ## Fayllar
 
@@ -81,7 +72,7 @@ maruza-web/
 ```
 
 Mazmunni tahrirlash: matn `index.html` da, ro'yxatlar (stipendiyalar, haftalik reja,
-test savollari, vaqt taqsimoti) `js/app.js` faylining boshidagi `MA'LUMOTLAR`
+test savollari, mashg'ulot bosqichlari) `js/app.js` faylining boshidagi `MA'LUMOTLAR`
 bo'limida joylashgan. Ranglar `css/style.css` faylining boshidagi tokenlar orqali
 o'zgartiriladi.
 
