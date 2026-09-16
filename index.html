@@ -194,10 +194,53 @@
       <li><h3>Portfolio</h3><p>Diplom, sertifikat, nashr va tavsiyanomalarni tizimli to'plash.</p></li>
       <li><h3>Saralash bosqichi</h3><p>Fakultet va universitet bosqichida tanlab olinish.</p></li>
     </ol>
-    <h3 class="sub">O'z-o'zini tekshirish</h3>
-    <div class="check" id="checkList"></div>
-    <div class="meter"><div class="meter__bar" id="checkBar"></div></div>
-    <p class="meter__txt" id="checkTxt">Belgilangan: 0 / 6</p>
+    <h3 class="sub">Da'vogarlik tayyorligini baholash</h3>
+    <div class="calc">
+      <div class="calc__form">
+        <label class="field">
+          <span class="field__l">Joriy bosqich</span>
+          <select class="select" id="cKurs">
+            <option value="1">1-kurs</option>
+            <option value="2">2-kurs</option>
+            <option value="3" selected>3-kurs</option>
+            <option value="4">4-kurs (bitiruvchi)</option>
+          </select>
+        </label>
+        <label class="field">
+          <span class="field__l">O'zlashtirish ko'rsatkichi <b id="vBall">88%</b></span>
+          <input type="range" id="cBall" min="60" max="100" step="1" value="88">
+        </label>
+        <label class="field">
+          <span class="field__l">Ilmiy nashr: maqola, tezis <b id="vNashr">1</b></span>
+          <input type="range" id="cNashr" min="0" max="5" step="1" value="1">
+        </label>
+        <label class="field">
+          <span class="field__l">Tanlov va olimpiada ishtiroki <b id="vTanlov">1</b></span>
+          <input type="range" id="cTanlov" min="0" max="5" step="1" value="1">
+        </label>
+        <label class="field">
+          <span class="field__l">Ma'naviy-ma'rifiy tadbirlarda faollik <b id="vTadbir">2</b></span>
+          <input type="range" id="cTadbir" min="0" max="5" step="1" value="2">
+        </label>
+      </div>
+
+      <div class="calc__out">
+        <div class="gauge">
+          <span class="gauge__n" id="calcPct">0%</span>
+          <span class="gauge__l" id="calcLvl">Tayyorlik darajasi</span>
+        </div>
+        <div class="meter"><div class="meter__bar" id="calcBar"></div></div>
+        <div class="calc__block">
+          <h4>Hozirgi bosqichdagi qamrov</h4>
+          <p id="calcScope"></p>
+        </div>
+        <div class="calc__block">
+          <h4>Kuchaytirish lozim</h4>
+          <ul class="list list--warn" id="calcGaps"></ul>
+        </div>
+      </div>
+    </div>
+    <p class="disclaimer">Natija — o'quv maqsadidagi shartli o'z-o'zini baholash. Rasmiy saralash oliy ta'lim tashkilotining nizomi asosida o'tkaziladi.</p>
   </section>
 
   <!-- 7 -->
@@ -308,13 +351,24 @@
   </section>
 
   <!-- 10 -->
+  <section class="slide" data-title="CTF mini-poligoni">
+    <h2 class="s-title">CTF mini-poligoni</h2>
+    <p class="s-lead">Olimpiada topshiriqlari amalda qanday ko'rinishda bo'ladi. Javobni yozib tekshirib ko'ring; kerak bo'lsa ishoratni oching.</p>
+    <div class="ctf" id="ctf"></div>
+    <div class="quiz__foot">
+      <button class="btn btn--primary" id="ctfReset">Qaytadan boshlash</button>
+      <div class="score"><span id="ctfScore">0</span> / 100 &middot; <span id="ctfTxt">Yechilgan: 0 / 5</span></div>
+    </div>
+  </section>
+
+  <!-- 11 -->
   <section class="slide" data-title="Tayyorgarlik rejasi">
     <h2 class="s-title">Sakkiz haftalik tayyorgarlik rejasi</h2>
     <p class="s-lead">Qo'shimcha material: saralash bosqichiga tizimli kirish uchun namunaviy reja.</p>
     <div class="weeks" id="weeks"></div>
   </section>
 
-  <!-- 11 -->
+  <!-- 12 -->
   <section class="slide" data-title="Bilimni tekshirish">
     <h2 class="s-title">Interaktiv bilim sinovi</h2>
     <p class="s-lead">Yetti savol. Javobni tanlang — natija darhol ko'rsatiladi.</p>
@@ -325,7 +379,7 @@
     </div>
   </section>
 
-  <!-- 12 -->
+  <!-- 13 -->
   <section class="slide" data-title="Amaliy topshiriq">
     <h2 class="s-title">Amaliy topshiriq va mustaqil ish</h2>
     <div class="cols cols--2">
@@ -356,7 +410,7 @@
     </div>
   </section>
 
-  <!-- 13 -->
+  <!-- 14 -->
   <section class="slide" data-title="Baholash mezonlari">
     <h2 class="s-title">Baholash mezonlari va fidbek</h2>
     <div class="table-wrap">
@@ -412,7 +466,7 @@
     </div>
   </section>
 
-  <!-- 14 -->
+  <!-- 15 -->
   <section class="slide" data-title="Xulosa">
     <h2 class="s-title">Xulosa</h2>
     <div class="finals">

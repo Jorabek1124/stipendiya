@@ -23,22 +23,42 @@ Kredit haftaligi 3-kun · 2 akademik soat (80 daqiqa)
 Yuqori panelda: mashg'ulot taymeri (80 daqiqa, bosilganda boshlanadi va to'xtaydi),
 yorug'/qorong'i rejim, reja paneli.
 
-## Tuzilishi (14 slayd)
+## Tuzilishi (15 slayd)
 
 1. Mavzuga kirish
-2. Maqsad, kutilayotgan natijalar va vaqt taqsimoti
+2. Maqsad, kutilayotgan natijalar va mashg'ulot bosqichlari
 3. Planshet asosidagi kirish savollari — kartani bosib javob ochiladi
 4. Nomdor stipendiyalar tizimi: ikki guruh
 5. 11 ta stipendiya — izlash va qamrov bo'yicha filtr
-6. Da'vogarlik yo'li + o'z-o'zini tekshirish ro'yxati
+6. Da'vogarlik yo'li + **tayyorlik kalkulyatori**
 7. Tanlovlar
 8. Fan olimpiadalari: maqsad va bosqichlar
 9. Axborot xavfsizligi yo'nalishi: formatlar va tayyorgarlik
-10. Sakkiz haftalik tayyorgarlik rejasi
-11. Interaktiv bilim sinovi (7 savol, ball hisobi)
-12. Amaliy topshiriq va mustaqil ish
-13. Baholash mezonlari va fidbek
-14. Xulosa va manbalar
+10. **CTF mini-poligoni** — 5 topshiriq, javob tekshiruvi
+11. Sakkiz haftalik tayyorgarlik rejasi
+12. Interaktiv bilim sinovi (7 savol, ball hisobi)
+13. Amaliy topshiriq va mustaqil ish
+14. Baholash mezonlari va fidbek
+15. Xulosa va manbalar
+
+### Tayyorlik kalkulyatori (6-slayd)
+
+Talaba kursini, o'zlashtirish ko'rsatkichini, ilmiy nashr, tanlov va tadbir
+faolligini kiritadi; sahifa tayyorlik foizini, hozirgi bosqichdagi qamrovni va
+yetishmayotgan mezonlarni ko'rsatadi.
+
+Ball og'irliklari: o'zlashtirish 40, ilmiy nashr 25, tanlov va olimpiada 20,
+ma'naviy-ma'rifiy faollik 15. Faqat yuqori baho 40% beradi — bu qo'llanmadagi
+talabni aks ettiradi: o'zlashtirish yolg'iz yetarli emas. Natija shartli
+o'z-o'zini baholash, rasmiy saralash OTT nizomi asosida o'tkaziladi.
+
+### CTF mini-poligoni (10-slayd)
+
+Olimpiada formatini amalda ko'rsatadigan beshta topshiriq: Sezar shifri,
+base64 qatlami, xesh algoritmini aniqlash, server jurnalidan SQL in'yeksiyasi
+urinishini topish, Set-Cookie sarlavhasidagi yetishmayotgan himoya belgisi.
+Har biri 20 ball; ishorat ochilsa 12 ball. Javob `Enter` bilan ham tekshiriladi,
+har bir yechimdan keyin izoh chiqadi.
 
 ## Mazmun manbasi
 

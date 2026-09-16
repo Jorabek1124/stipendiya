@@ -94,14 +94,55 @@
     }
   ];
 
-  // O'z-o'zini tekshirish mezonlari
-  const CHECKS = [
-    'Fanlarni a’lo baholarga o‘zlashtirib kelmoqdaman',
-    'Ilmiy to‘garak yoki loyiha ishida qatnashaman',
-    'Kamida bitta maqola yoki tezisim bor',
-    'Ma’naviy-ma’rifiy tadbirlarda faolman',
-    'Sertifikat va diplomlarim tartibli saqlanadi',
-    'Tanlov va olimpiada muddatlarini kuzatib boraman'
+  // CTF mini-poligoni topshiriqlari
+  const CTF = [
+    {
+      cat: 'Kriptografiya', title: 'Siljitilgan alifbo', pts: 20,
+      task: 'Quyidagi matn lotin alifbosini uch pozitsiyaga siljitish orqali shifrlangan. Dastlabki so‘zni toping.',
+      code: 'WDQORY',
+      hint: 'Har bir harfni alifbo bo‘yicha uch pozitsiya orqaga qaytaring: W → T.',
+      ans: ['tanlov'],
+      exp: 'Sezar shifri. Uch pozitsiya orqaga: W→T, D→A, Q→N, O→L, R→O, Y→V. Natija: TANLOV. Kalit fazosi faqat 25 variantdan iborat bo‘lgani uchun bunday shifr bir zumda ochiladi.'
+    },
+    {
+      cat: 'Kodlash', title: 'Base64 qatlami', pts: 20,
+      task: 'Quyidagi satr ortida qanday so‘z yashiringan?',
+      code: 'T0xJTVBJQURB',
+      hint: 'Bu shifrlash emas, kodlash. Faqat harf, raqam va "=" belgilaridan tashkil topgani base64 ga ishora qiladi.',
+      ans: ['olimpiada'],
+      exp: 'Base64 — kodlash usuli, shifrlash emas: kalit talab qilinmaydi va har kim dekodlay oladi. Natija: OLIMPIADA. Shu sababli base64 maxfiylikni ta’minlamaydi.'
+    },
+    {
+      cat: 'Xeshlar', title: 'Algoritmni aniqlash', pts: 20,
+      task: 'Quyidagi xesh qaysi algoritm natijasi? Algoritm nomini yozing.',
+      code: '5d41402abc4b2a76b9719d911017c592',
+      hint: 'Xesh uzunligi algoritmni ko‘rsatadi: 32, 40 va 64 belgi uchtasi turli algoritmga tegishli.',
+      ans: ['md5', 'md-5'],
+      exp: '32 belgili onaltilik satr — MD5. SHA-1 40 belgi, SHA-256 esa 64 belgi beradi. MD5 kolliziyalarga zaif, shuning uchun parol saqlashda ishlatilmaydi.'
+    },
+    {
+      cat: 'Log tahlili', title: 'Hujum manbasini toping', pts: 20,
+      task: 'Server jurnalida bitta so‘rov hujum urinishi hisoblanadi. Shu so‘rov yuborilgan IP manzilni yozing.',
+      code: '10.10.4.12 - [09:14:22] "GET /login HTTP/1.1" 200\n' +
+            '10.10.4.31 - [09:14:40] "GET /profile?id=7 HTTP/1.1" 200\n' +
+            '10.10.4.77 - [09:15:03] "GET /profile?id=1\' OR \'1\'=\'1 HTTP/1.1" 500\n' +
+            '10.10.4.31 - [09:15:19] "GET /logout HTTP/1.1" 302',
+      hint: 'So‘rov parametrlarini solishtiring: qaysi biri ma’lumotlar bazasi shartini o‘zgartirishga urinadi?',
+      ans: ['10.10.4.77'],
+      exp: 'Uchinchi qatorda id parametriga ’ OR ‘1’=‘1 qo‘shilgan — SQL in’yeksiyasiga urinish, javob kodi 500 buni tasdiqlaydi. Manba: 10.10.4.77. Himoya usuli — parametrlangan so‘rovlar.'
+    },
+    {
+      cat: 'Veb xavfsizligi', title: 'Yetishmayotgan himoya', pts: 20,
+      task: 'Javob sarlavhalarida Set-Cookie uchun qaysi muhim belgi qo‘yilmagan? Belgi nomini yozing.',
+      code: 'HTTP/1.1 200 OK\n' +
+            'Content-Type: text/html; charset=utf-8\n' +
+            'Strict-Transport-Security: max-age=31536000\n' +
+            'X-Content-Type-Options: nosniff\n' +
+            'Set-Cookie: session=a1b2c3; Path=/; Secure; SameSite=Lax',
+      hint: 'Cookie qiymati brauzerdagi skript uchun ochiq qolmasligi kerak.',
+      ans: ['httponly', 'http-only', 'http only'],
+      exp: 'Secure va SameSite mavjud, ammo HttpOnly yo‘q. Bu belgi bo‘lmasa cookie qiymatini JavaScript o‘qiy oladi va XSS orqali sessiya o‘g‘irlanishi mumkin.'
+    }
   ];
 
   // Sakkiz haftalik tayyorgarlik rejasi (qo'shimcha material)
@@ -334,26 +375,80 @@
   renderSch();
 
   /* =========================================================
-     9. O'Z-O'ZINI TEKSHIRISH
+     9. DA'VOGARLIK TAYYORLIGI KALKULYATORI
+     Og'irliklar: o'zlashtirish 40, ilmiy nashr 25,
+     tanlov/olimpiada 20, ma'naviy-ma'rifiy faollik 15 = 100
      ========================================================= */
-  const checkList = $('#checkList');
-  const checkBar  = $('#checkBar');
-  const checkTxt  = $('#checkTxt');
+  const calc = {
+    kurs:   $('#cKurs'),
+    ball:   $('#cBall'),
+    nashr:  $('#cNashr'),
+    tanlov: $('#cTanlov'),
+    tadbir: $('#cTadbir')
+  };
 
-  checkList.innerHTML = CHECKS.map(t =>
-    '<div class="c-item"><span class="c-item__box">✓</span><span>' + t + '</span></div>').join('');
-
-  const cItems = $$('.c-item', checkList);
-  function renderCheck() {
-    const n = cItems.filter(i => i.classList.contains('is-on')).length;
-    checkBar.style.width = (n / cItems.length * 100) + '%';
-    checkTxt.textContent = 'Belgilangan: ' + n + ' / ' + cItems.length +
-      (n === cItems.length ? '  ·  barcha mezonlar qamrab olingan' : '');
+  function ballScore(v) {              // o'zlashtirish, maksimum 40
+    if (v >= 86) return 40;            // a'lo daraja
+    if (v >= 71) return 26;
+    return 12;
   }
-  cItems.forEach(i => i.addEventListener('click', () => {
-    i.classList.toggle('is-on'); renderCheck();
-  }));
-  renderCheck();
+  function stepScore(v, max) {         // 0..5 shkalani ballga aylantirish
+    const table = [0, .48, .72, .88, .96, 1];
+    return Math.round(table[Math.min(v, 5)] * max);
+  }
+
+  function renderCalc() {
+    const kurs   = +calc.kurs.value;
+    const ball   = +calc.ball.value;
+    const nashr  = +calc.nashr.value;
+    const tanlov = +calc.tanlov.value;
+    const tadbir = +calc.tadbir.value;
+
+    // Joriy qiymatlarni yorliqlarda ko'rsatish
+    $('#vBall').textContent   = ball + '%';
+    $('#vNashr').textContent  = nashr === 5 ? '5+' : nashr;
+    $('#vTanlov').textContent = tanlov === 5 ? '5+' : tanlov;
+    $('#vTadbir').textContent = tadbir === 5 ? '5+' : tadbir;
+
+    const pct = ballScore(ball) + stepScore(nashr, 25) +
+                stepScore(tanlov, 20) + stepScore(tadbir, 15);
+
+    const lvl = pct >= 85 ? 'Saralash bosqichiga tayyor'
+              : pct >= 65 ? 'Da’vogarlikka yaqin'
+              : pct >= 45 ? 'Shakllanish davri'
+              : 'Boshlang‘ich daraja';
+
+    $('#calcPct').textContent = pct + '%';
+    $('#calcLvl').textContent = lvl;
+    $('#calcBar').style.width = pct + '%';
+
+    // Qamrov: metodik qo'llanmadagi kurs shartlari asosida
+    const scope = kurs === 4
+      ? 'Bitiruvchi kurs sifatida Prezident davlat stipendiyasiga hamda alloma nomidagi stipendiyalarga da’vogarlik qamrovidasiz.'
+      : kurs === 3
+        ? 'Oxirgi ikki kurs qamroviga kirasiz: Beruniy, Ibn Sino, Navoiy, Ulug‘bek, Imom al-Buxoriy va Islom Karimov nomli stipendiyalar.'
+        : 'Hozircha qamrovga kirmaydi — bu bosqich portfolio to‘plash davri. Ko‘rsatkichlar aynan shu yillarda shakllanadi.';
+    $('#calcScope').textContent = scope;
+
+    // Yetishmayotgan mezonlar
+    const gaps = [];
+    if (ball < 86)   gaps.push('O‘zlashtirishni a’lo darajaga (86% va yuqori) ko‘tarish — asosiy shart.');
+    if (nashr === 0) gaps.push('Kamida bitta maqola yoki tezis tayyorlash.');
+    else if (nashr < 2) gaps.push('Ilmiy nashrlar sonini oshirish — ikki va undan ko‘pi barqaror natija hisoblanadi.');
+    if (tanlov === 0) gaps.push('Tanlov yoki olimpiadaning dastlabki bosqichida ishtirok etish.');
+    else if (tanlov < 2) gaps.push('Ishtirokni turli formatlarga kengaytirish: olimpiada, hakaton, loyiha tanlovi.');
+    if (tadbir < 2)  gaps.push('Ma’naviy-ma’rifiy va ijodiy tadbirlarda faollikni oshirish.');
+    if (kurs <= 2)   gaps.push('Hujjat va sertifikatlarni hozirdan tizimli saqlab boring.');
+    if (!gaps.length) gaps.push('Barcha asosiy mezonlar qamrab olingan — hujjatlarni saralash bosqichiga tayyorlang.');
+
+    $('#calcGaps').innerHTML = gaps.map(g => '<li>' + g + '</li>').join('');
+  }
+
+  Object.keys(calc).forEach(k => {
+    calc[k].addEventListener('input', renderCalc);
+    calc[k].addEventListener('change', renderCalc);
+  });
+  renderCalc();
 
   /* =========================================================
      10. HAFTALIK REJA
@@ -415,7 +510,95 @@
   buildQuiz();
 
   /* =========================================================
-     12. KLAVIATURA BOSHQARUVI
+     12. CTF MINI-POLIGONI
+     ========================================================= */
+  const ctfBox   = $('#ctf');
+  const ctfScore = $('#ctfScore');
+  const ctfTxt   = $('#ctfTxt');
+
+  const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const norm = t => t.toLowerCase().trim().replace(/\s+/g, ' ');
+
+  function buildCtf() {
+    let points = 0, solved = 0;
+
+    ctfScore.textContent = '0';
+    ctfTxt.textContent = 'Yechilgan: 0 / ' + CTF.length;
+
+    ctfBox.innerHTML = CTF.map((t, i) =>
+      '<article class="task" data-i="' + i + '">' +
+        '<header class="task__top">' +
+          '<span class="task__cat">' + t.cat + '</span>' +
+          '<h3 class="task__t">' + t.title + '</h3>' +
+          '<span class="task__pts">' + t.pts + ' ball</span>' +
+        '</header>' +
+        '<p class="task__q">' + t.task + '</p>' +
+        '<pre class="task__code">' + esc(t.code) + '</pre>' +
+        '<div class="task__row">' +
+          '<input type="text" class="input task__in" placeholder="Javobni yozing…" ' +
+                 'aria-label="' + t.title + ' javobi">' +
+          '<button class="btn btn--primary task__go">Tekshirish</button>' +
+          '<button class="btn task__hint">Ishorat</button>' +
+        '</div>' +
+        '<p class="task__fb"></p>' +
+      '</article>').join('');
+
+    $$('.task', ctfBox).forEach(el => {
+      const t      = CTF[+el.dataset.i];
+      const input  = $('.task__in', el);
+      const fb     = $('.task__fb', el);
+      const hintBtn = $('.task__hint', el);
+      let usedHint = false;
+
+      hintBtn.addEventListener('click', () => {
+        if (el.dataset.done) return;
+        usedHint = true;
+        hintBtn.disabled = true;
+        fb.className = 'task__fb is-hint';
+        fb.textContent = t.hint;
+      });
+
+      function check() {
+        if (el.dataset.done) return;
+        const val = norm(input.value);
+        if (!val) { input.focus(); return; }
+
+        if (t.ans.includes(val)) {
+          el.dataset.done = '1';
+          el.classList.add('is-solved');
+          input.disabled = true;
+          hintBtn.disabled = true;
+          $('.task__go', el).disabled = true;
+
+          const got = usedHint ? Math.round(t.pts * 0.6) : t.pts;
+          points += got;
+          solved += 1;
+
+          fb.className = 'task__fb is-ok';
+          fb.textContent = '+' + got + ' ball' +
+            (usedHint ? ' (ishorat bilan). ' : '. ') + t.exp;
+
+          ctfScore.textContent = points;
+          ctfTxt.textContent = 'Yechilgan: ' + solved + ' / ' + CTF.length +
+            (solved === CTF.length ? '  ·  poligon yakunlandi' : '');
+        } else {
+          el.classList.add('is-shake');
+          setTimeout(() => el.classList.remove('is-shake'), 400);
+          fb.className = 'task__fb is-no';
+          fb.textContent = 'Javob to‘g‘ri kelmadi. Yana urinib ko‘ring' +
+            (usedHint ? '.' : ' yoki ishoratni oching.');
+        }
+      }
+
+      $('.task__go', el).addEventListener('click', check);
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
+    });
+  }
+  $('#ctfReset').addEventListener('click', buildCtf);
+  buildCtf();
+
+  /* =========================================================
+     13. KLAVIATURA BOSHQARUVI
      ========================================================= */
   document.addEventListener('keydown', e => {
     if (/^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
@@ -438,7 +621,7 @@
   });
 
   /* =========================================================
-     13. ISHGA TUSHIRISH
+     14. ISHGA TUSHIRISH
      ========================================================= */
   go(0);
 })();
